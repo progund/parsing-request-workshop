@@ -7,14 +7,27 @@ import java.util.stream.Collectors;
 
 public class SqlBuilder {
 
+  private static void checkArgs(String[] args) {
+    if (Arrays.asList(args).stream().anyMatch(s -> s.endsWith("="))) {
+      System.out.println("Illegal argument: ");
+      List<String> illegalArguments = Arrays.asList(args)
+        .stream()
+        .filter(s -> s.endsWith("="))
+        .collect(Collectors.toList());
+      System.out.println(illegalArguments);
+      System.exit(1);
+    }
+  }
+  
   public static void main(String[] args) {
     System.out.println("Arguments: " + Arrays.toString(args));
-
-    ParameterParser parser = new ParameterParser(
-      Arrays.asList(args)
-      .stream()
-      .collect(Collectors.toMap(s -> s.split("=")[0], s -> s.split("=")[1])) );
+    checkArgs(args);
     
+    ParameterParser parser =
+      new ParameterParser(Arrays.asList(args)
+                          .stream()
+                          .collect(Collectors.toMap(s -> s.split("=")[0],
+                                                    s -> s.split("=")[1])) );
     parser.parse();
 
     System.out.println("Constraints: " + parser.toString());
