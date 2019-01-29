@@ -33,9 +33,8 @@ public class SqlBuilder {
     System.out.println("Constraints: " + parser.toString());
     System.out.println("Valid constraints: " + parser.validConstraints());
     System.out.println(parser.areValidConstraints() ?
-                       "All constraints are valid"
-                       : "Invalid constraints" +
-                       parser.invalidConstraints());
+                       "All constraints are valid" :
+                       "Invalid constraints" + parser.invalidConstraints());
     System.out.println("SQL: " + sql(parser.validConstraints()));
 
   }
