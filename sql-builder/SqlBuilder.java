@@ -9,12 +9,14 @@ public class SqlBuilder {
 
   public static void main(String[] args) {
     System.out.println("Arguments: " + Arrays.toString(args));
-    ParameterParser parser
-      = new ParameterParser(Arrays
-                            .asList(args)
-                            .stream()
-                            .collect(Collectors.toMap(s -> s.split("=")[0], s -> s.split("=")[1])));
+
+    ParameterParser parser = new ParameterParser(
+      Arrays.asList(args)
+      .stream()
+      .collect(Collectors.toMap(s -> s.split("=")[0], s -> s.split("=")[1])) );
+    
     parser.parse();
+
     System.out.println("Constraints: " + parser.toString());
     System.out.println("Valid constraints: " + parser.validConstraints());
     System.out.println(parser.areValidConstraints() ?
