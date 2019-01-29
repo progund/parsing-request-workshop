@@ -82,7 +82,7 @@ public class SystemetAPI extends HttpServlet {
           condition += con.field() + " >= " + con.value();
           break;
         case EQUALS:
-          condition += con.field() + " = '" + con.value() + "' ";
+          condition += con.field() + " = '" + con.value() + "'";
           break;
       }
       condition += " AND ";
@@ -90,7 +90,7 @@ public class SystemetAPI extends HttpServlet {
 
     if (! condition.equals("")) {
       // Remove last AND, then prepend with WHERE
-      condition = condition.substring(0, condition.length()-6);
+      condition = condition.substring(0, condition.length() - 5);
       condition = " WHERE " + condition;
     }
     return "SELECT * FROM product" + condition + ";";
